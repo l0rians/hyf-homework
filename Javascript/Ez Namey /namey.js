@@ -6,7 +6,7 @@ let firstWords = [
   "Smart",
   "Future",
   "Ultimate",
-  "NextGen",
+  "Generation",
   "Brilliant",
   "Innovative",
 ];
