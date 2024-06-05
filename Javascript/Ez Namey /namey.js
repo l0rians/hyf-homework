@@ -1,4 +1,4 @@
-let firstWords = [
+const firstWords = [
   "Amazing",
   "Creative",
   "Super",
@@ -10,7 +10,7 @@ let firstWords = [
   "Brilliant",
   "Innovative",
 ];
-let secondWords = [
+const secondWords = [
   "Solutions",
   "Ideas",
   "Concepts",
@@ -23,10 +23,12 @@ let secondWords = [
   "Projects",
 ];
 
-const randomNumber = Math.floor(Math.random() * 10);
+const randomNumber1 = Math.floor(Math.random() * 10);
+const randomNumber2 = Math.floor(Math.random() * 10);
 
-let startupName = firstWords[randomNumber] + " " + secondWords[randomNumber];
-let nameLength = startupName.length;
+const startupName =
+  firstWords[randomNumber1] + " " + secondWords[randomNumber2];
+const nameLength = startupName.length;
 
 console.log(`The startup: "${startupName}" contains ${nameLength} characters.`);
 
