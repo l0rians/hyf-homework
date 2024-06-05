@@ -1,30 +1,32 @@
 // Peter's parameters
-let peterWidth = 8;
-let peterHeight = 10;
-let peterDepth = 10;
-let peterGardenSize = 100;
-let peterRealPrice = 2500000;
+let peterHouseWidth = 8;
+let peterHouseHeight = 10;
+let peterHouseDepth = 10;
+let peterHouseGardenSize = 100;
+let peterHouseRealPrice = 2500000;
 
 // Julia's parameters
-let juliaWidth = 5;
-let juliaHeigth = 8;
-let juliaDepth = 11;
-let juliaGardenSize = 70;
-let juliaRealPrice = 1000000;
+let juliaHouseWidth = 5;
+let juliaHouseHeigth = 8;
+let juliaHouseDepth = 11;
+let juliaHouseGardenSize = 70;
+let juliaHouseRealPrice = 1000000;
 
-let peterVolume = peterWidth * peterHeight * peterDepth;
-let juliaVolume = juliaWidth * juliaHeigth * juliaDepth;
+let peterHouseVolume = peterHouseWidth * peterHouseHeight * peterHouseDepth;
+let juliaHouseVolume = juliaHouseWidth * juliaHouseHeigth * juliaHouseDepth;
 
-let peterHousePrice = peterVolume * 2.5 * 1000 + peterGardenSize * 300;
-let juliaHousePrice = juliaVolume * 2.5 * 1000 + juliaGardenSize * 300;
+let peterHousePrice =
+  peterHouseVolume * 2.5 * 1000 + peterHouseGardenSize * 300;
+let juliaHousePrice =
+  juliaHouseVolume * 2.5 * 1000 + juliaHouseGardenSize * 300;
 
-if (peterHousePrice > peterRealPrice) {
+if (peterHousePrice > peterHouseRealPrice) {
   console.log("Peter is paying too much for the house.");
 } else {
   console.log("Peter is paying too little for the house");
 }
 
-if (juliaHousePrice > juliaRealPrice) {
+if (juliaHousePrice > juliaHouseRealPrice) {
   console.log("Julia is paying too much for the house.");
 } else {
   console.log("Julia is paying too little for the house.");
