@@ -1,7 +1,7 @@
-let yearOfBirth = 1999;
-let yearFuture = 2049;
+const yearOfBirth = 1999;
+const yearFuture = 2049;
 
-let age = yearFuture - yearOfBirth;
+const age = yearFuture - yearOfBirth;
 console.log(`You will be ${age} years old in ${yearFuture}`);
 
 // Age-ify (A future age calculator)
