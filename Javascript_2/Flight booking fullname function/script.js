@@ -1,23 +1,16 @@
-function getFullName(
-  firstName,
-  surName,
-  useFormalName = false,
-  isFemale = false
-) {
+function getFullName(firstName, surName, useFormalName = false, isFemale) {
   firstName = firstName.trim();
   surName = surName.trim();
 
-  if (firstName === "" && surName === "") {
-    return "";
-  } else if (firstName === "") {
-    return surName;
-  } else if (surName === "") {
-    return firstName;
-  }
-  let fullName = firstName + " " + surName;
+  let fullName = `${firstName} ${surName}`.trim();
 
+  if (fullName === "") {
+    return "Error, please insert you're name.";
+  }
   if (useFormalName) {
-    if (isFemale) {
+    if (typeof isFemale === undefined) {
+      return fullName;
+    } else if (isFemale) {
       fullName = "Lady " + fullName;
     } else {
       fullName = "Lord " + fullName;
@@ -26,8 +19,8 @@ function getFullName(
   return fullName;
 }
 
-let fullName1 = getFullName("Benjamin", "Hughes", true);
-let fullName2 = getFullName("Julia", "Anderson", true, true);
+const fullName1 = getFullName("Benjamin", "Hughes", true);
+const fullName2 = getFullName("Julia", "Anderson", true, true);
 
 console.log(fullName1);
 console.log(fullName2);
