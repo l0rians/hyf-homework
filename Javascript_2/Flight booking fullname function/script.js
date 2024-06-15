@@ -7,10 +7,8 @@ function getFullName(firstName, surName, useFormalName = false, isFemale) {
   if (fullName === "") {
     return "Error, please insert you're name.";
   }
-  if (useFormalName) {
-    if (typeof isFemale === undefined) {
-      return fullName;
-    } else if (isFemale) {
+  if (useFormalName && isFemale !== undefined) {
+    if (isFemale) {
       fullName = "Lady " + fullName;
     } else {
       fullName = "Lord " + fullName;
