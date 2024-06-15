@@ -12,7 +12,7 @@ function addCandy(candyType, weight) {
   const totalPrice = pricePerGram * weight;
   boughtCandyPrices.push(totalPrice);
 }
-const amountToSpend = Math.random() * 100;
+const amountToSpend = (Math.random() * 100).toFixed();
 
 function canBuyMoreCandy() {
   let totalSpent = 0;
@@ -24,7 +24,12 @@ function canBuyMoreCandy() {
   } else {
     console.log("Enough candy for you!");
   }
+  console.log("totalSpent: ", totalSpent);
+  console.log("amountToSpend: ", amountToSpend);
 }
 addCandy("sweet", 10);
+addCandy("chocolate", 20);
+addCandy("toffee", 15);
+addCandy("chewing-gum", 50);
 
 canBuyMoreCandy();
