@@ -24,6 +24,7 @@ const getNoteId = getNote(4);
 
 //console.log(getNoteId);
 
+// if we use this function it will make the completed value = true, by default its false.
 function markNoteAsCompleted(id) {
   for (let i = 0; i < notes.length; i++) {
     if (notes[i].id === id) {
@@ -37,6 +38,7 @@ function markNoteAsCompleted(id) {
 function logOutNotesFormatted() {
   // goint through all array
   for (let i = 0; i < notes.length; i++) {
+    // created new variable that takes the status: Completed/Not comtpleted
     let status;
     if (notes[i].completed) {
       status = "Completed";
