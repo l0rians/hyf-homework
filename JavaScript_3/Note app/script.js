@@ -2,13 +2,8 @@
 const notes = [];
 // function for save notes
 function saveNote(content, id) {
-  notes.push({ content, id });
+  notes.push({ content, id, completed: false });
 }
-// calling fuction with note and its id
-saveNote("Pick up groceries", 1);
-saveNote("Do laundry", 2);
-
-// console.log(notes);
 
 // function to get the note by its id
 function getNote(id) {
@@ -29,15 +24,33 @@ const getNoteId = getNote(4);
 
 //console.log(getNoteId);
 
+function markNoteAsCompleted(id) {
+  for (let i = 0; i < notes.length; i++) {
+    if (notes[i].id === id) {
+      notes[i].completed = true;
+      return;
+    }
+  }
+  console.log(`Note with that ID is not found`);
+}
+
 function logOutNotesFormatted() {
   // goint through all array
   for (let i = 0; i < notes.length; i++) {
+    let status;
+    if (notes[i].completed) {
+      status = "Completed";
+    } else {
+      status = "Not completed";
+    }
     console.log(
-      `The note with id: ${notes[i].id}, has the following note text: ${notes[i].content}`
+      `The note with id: ${notes[i].id}, has the following note text: ${notes[i].content}. Status: ${status}`
     );
   }
 }
 
+saveNote("Pick up groceries", 1);
+saveNote("Do laundry", 2);
 logOutNotesFormatted();
-// The note with id: 1, has the following note text: Pick up groceries
-// The note with id: 2, has the following note text: Do laundry
+markNoteAsCompleted(1);
+logOutNotesFormatted();
