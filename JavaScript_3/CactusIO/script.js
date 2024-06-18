@@ -20,7 +20,7 @@ function showStatus(arr, limit, day) {
     durationSum += arr[i].duration;
   }
 
-  if (limit > durationSum) {
+  if (limit < durationSum) {
     return "You have reached your limit, no more smartphoning for you!";
   }
 
@@ -40,3 +40,4 @@ function showMostSpentTime(arr) {
 }
 
 console.log(showMostSpentTime(activities));
+console.log(showStatus(activities, 100));
