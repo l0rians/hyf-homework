@@ -1,13 +1,20 @@
-// Write a function where you speficy your speed in km/h and how far you have to go in km. The function has to return the time it will take to arrive at your destination. The time should be formatted like this: 3 hours and 34 minutes.
+function calculateTravelTime(travelInformation) {
+  const speed = travelInformation.speed;
+  const destinationDistance = travelInformation.destinationDistance;
 
-function calculateTravelTime(speed, destinationDistance) {
-  // function with 2 parametrs. Speed and distance(km/h)
-  const totalHours = Math.floor(destinationDistance / speed); // dividing distance to speed so i can get hours
+  const totalHours = Math.floor(destinationDistance / speed);
   const totalMinutes = Math.round(
-    (destinationDistance / speed - totalHours) * 60 // getting total minutes
+    (destinationDistance / speed - totalHours) * 60
   );
 
-  // if there are hours add them to travelTime string
+  if (speed === 0) {
+    return "Speed must be more than 0";
+  }
+
+  if (totalHours === 0 && totalMinutes === 0) {
+    return "0 minutes";
+  }
+
   let travelTime = "";
   if (totalHours > 0) {
     if (totalHours === 1) {
@@ -16,11 +23,11 @@ function calculateTravelTime(speed, destinationDistance) {
       travelTime += `${totalHours} hours`;
     }
   }
-  // if there are both hours and minutes, add "and" between them
+
   if (totalHours > 0 && totalMinutes > 0) {
     travelTime += " and ";
   }
-  // if there are minutes, add them to the travelTime string
+
   if (totalMinutes > 0) {
     if (totalMinutes === 1) {
       travelTime += `${totalMinutes} minute`;
@@ -31,9 +38,9 @@ function calculateTravelTime(speed, destinationDistance) {
   return travelTime;
 }
 const travelInformation = {
-  speed: 50,
-  destinationDistance: 432,
+  speed: 0,
+  destinationDistance: 0,
 };
 
-const travelTime = calculateTravelTime(50, 432);
-console.log(travelTime); // 8 hours and 38 minutes
+const travelTime = calculateTravelTime(travelInformation);
+console.log(travelTime);

@@ -13,7 +13,7 @@ addActivity("TV-Show", 490);
 
 // console.log(activities);
 
-function showStatus(arr, limit, day) {
+function showStatus(arr, limit) {
   let durationSum = 0;
 
   for (let i = 0; i < arr.length; i++) {
@@ -24,7 +24,7 @@ function showStatus(arr, limit, day) {
     return "You have reached your limit, no more smartphoning for you!";
   }
 
-  return `"You have added ${arr.length} activities. They amount to ${durationSum} min. of usage"`;
+  return `You have added ${arr.length} activities. They amount to ${durationSum} min. of usage`;
 }
 
 function showMostSpentTime(arr) {

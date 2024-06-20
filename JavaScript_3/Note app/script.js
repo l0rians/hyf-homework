@@ -9,8 +9,7 @@ function saveNote(content, id) {
 function getNote(id) {
   // checking if is id number, if not, then error
   if (typeof id !== "number") {
-    console.log("Error. ID must be a number");
-    return;
+    return "Error. ID must be a number";
   }
   // checking all array and return it if it exists
   for (let i = 0; i < notes.length; i++) {
@@ -29,10 +28,10 @@ function markNoteAsCompleted(id) {
   for (let i = 0; i < notes.length; i++) {
     if (notes[i].id === id) {
       notes[i].completed = true;
-      return;
+      return notes[i];
     }
   }
-  console.log(`Note with that ID is not found`);
+  return null;
 }
 
 function logOutNotesFormatted() {
