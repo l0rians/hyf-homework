@@ -20,27 +20,27 @@ function getName() {
   }
 }
 
-function addFishInMyTodo() {
-  toDoList.push("fishing");
+function addToTodoList(command) {
+  const task = command.replace("Add ", "").replace(" to my todo", "");
+  toDoList.push(task);
+  return `${task} added to your todo`;
 }
 
-function addSingingInTodo() {
-  toDoList.push("singing in the shower");
-
-  return "Singing in the shower added to my todo";
-}
-
-function removeFishFromTodo() {
-  let index = toDoList.indexOf("fishing");
+function removeFromTodoList(command) {
+  const task = command.replace("Remove ", "").replace(" from my todo", "");
+  const index = toDoList.indexOf(task);
   if (index !== -1) {
     toDoList.splice(index, 1);
+    return `Removed ${task} from your todo`;
+  } else {
+    return `${task} is not in your todo list`;
   }
-
-  return "Removed fishing from your todo";
 }
-
 function checkTodoList() {
-  return `You have ${toDoList.length} todos - ${toDoList[0]} and ${toDoList[1]}`;
+  if (toDoList.length === 0) {
+    return "Your todo list is empty.";
+  }
+  return `You have ${toDoList.length} todos - ${toDoList.join(", ")}`;
 }
 
 function getDay() {
@@ -123,15 +123,11 @@ function getReply(command) {
     case command === "What is my name?":
       return getName();
 
-    case command === "Add fishing to my todo":
-      addFishInMyTodo();
-      return "Fishing added to your todo";
+    case command.startsWith("Add"):
+      return addToTodoList(command);
 
-    case command === "Add singing in the shower to my todo":
-      return addSingingInTodo();
-
-    case command === "Remove fishing from my todo":
-      return removeFishFromTodo();
+    case command.startsWith("Remove"):
+      return removeFromTodoList(command);
 
     case command === "What is on my todo?":
       return checkTodoList();
@@ -151,13 +147,13 @@ function getReply(command) {
 }
 //console.log(getReply("Hello my name is Noah"));
 //console.log(getReply("Hello my name is Benjamin"));
-console.log(getName());
-//console.log(getReply("Add fishing to my todo"));
-//console.log(getReply("Add singing in the shower to my todo"));
-//console.log(toDoList);
+//console.log(getName());
+console.log(getReply("Add walking to my todo"));
+console.log(getReply("Add singing in the shower to my todo"));
+console.log(toDoList);
 //console.log(getReply("Remove fishing from my todo"));
-// console.log(toDoList);
-//console.log(getReply("What is on my todo?"));
+//console.log(toDoList);
+console.log(getReply("What is on my todo?"));
 // console.log(getReply("What day is it today?"));
 // console.log(getReply("what is 3 + 5"));
 // console.log(getReply("Set a timer for 1 minutes"));
