@@ -3,6 +3,13 @@ import { knexInstance } from "./database.js";
 const app = express();
 const port = 3000;
 
+app.get("/2022-users", async (req, res) => {
+  const users = await knexInstance("users")
+    .whereBetween("created_at", ["2022-01-01 00:00:00", "2022-12-31 23:59:59"])
+    .orderBy("created_at");
+  res.json(users);
+});
+
 app.get("/gmail-users", async (req, res) => {
   const users = await knexInstance("users")
     .where("email", "like", "%gmail.com")
