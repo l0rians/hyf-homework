@@ -3,6 +3,11 @@ import { knexInstance } from "./database.js";
 const app = express();
 const port = 3000;
 
+app.get("/first-user", async (req, res) => {
+  const user = await knexInstance("users").first();
+  res.json(user);
+});
+
 app.get("/user-count", async (req, res) => {
   const count = await knexInstance("users").count();
   res.json(count);
