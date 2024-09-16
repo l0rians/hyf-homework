@@ -3,6 +3,13 @@ import { knexInstance } from "./database.js";
 const app = express();
 const port = 3000;
 
+app.get("/gmail-users", async (req, res) => {
+  const users = await knexInstance("users")
+    .where("email", "like", "%gmail.com")
+    .orderBy("id");
+  res.json(users);
+});
+
 app.get("/unconfirmed-users", async (req, res) => {
   const users = await knexInstance("users")
     .whereNull("confirmed_at")
