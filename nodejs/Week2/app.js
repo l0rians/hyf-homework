@@ -24,6 +24,16 @@ app.get("/search", (req, res) => {
   res.json(filteredDocuments);
 });
 
+app.get("/documents/:id", (req, res) => {
+  const { id } = req.params;
+  const document = documents.find((doc) => doc.id == id);
+
+  if (!document) {
+    return res.status(404).send("Document not found");
+  }
+
+  res.json(document);
+});
 app.use(express.json());
 
 app.get("/", (req, res) => {
