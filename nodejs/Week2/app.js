@@ -7,21 +7,31 @@ app.use(express.json());
 // Support parsing JSON requests
 const documents = JSON.parse(fs.readFileSync("documents.json", "utf8"));
 
-app.get("/search", (req, res) => {
-  const { q } = req.query;
-
-  if (!q) {
-    return res.json(documents);
+const filterDocuments = (documents, q, fields) => {
+  if (q) {
+    return documents.filter((doc) =>
+      Object.values(doc).some((value) =>
+        value.toString().toLowerCase().includes(q.toLowerCase())
+      )
+    );
   }
 
-  const filteredDocuments = documents.filter((doc) =>
-    Object.values(doc).some(
-      (value) =>
-        typeof value === "string" &&
-        value.toLowerCase().includes(q.toLowerCase())
-    )
-  );
+  if (fields) {
+    return documents.filter((doc) => {
+      return Object.entries(fields).every(
+        ([key, value]) =>
+          doc[key] &&
+          doc[key].toString().toLowerCase() === value.toString().toLowerCase()
+      );
+    });
+  }
 
+  return documents;
+};
+
+app.get("/search", (req, res) => {
+  const { q } = req.query;
+  const filteredDocuments = filterDocuments(documents, q, null);
   res.json(filteredDocuments);
 });
 
@@ -35,30 +45,9 @@ app.post("/search", (req, res) => {
       .status(400)
       .send("Cannot search by both query and fields simultaneously");
   }
-  // if q is provided, search by query
-  if (q) {
-    const filteredDocuments = documents.filter((doc) =>
-      Object.values(doc).some((value) =>
-        value.toString().toLowerCase().includes(q.toLowerCase())
-      )
-    );
-    return res.json(filteredDocuments);
-  }
 
-  // search by fields
-  if (fields) {
-    const filteredDocuments = documents.filter((doc) => {
-      return Object.entries(fields).every(
-        ([key, value]) =>
-          doc[key] &&
-          doc[key].toString().toLowerCase() === value.toString().toLowerCase()
-      );
-    });
-    return res.json(filteredDocuments);
-  }
-
-  // if q and fields are not provided, return all documents
-  res.json(documents);
+  const filteredDocuments = filterDocuments(documents, q, fields);
+  res.json(filteredDocuments);
 });
 
 app.get("/documents/:id", (req, res) => {
