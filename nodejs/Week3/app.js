@@ -24,8 +24,7 @@ const contactsAPIRouter = express.Router();
 apiRouter.use("/contacts", contactsAPIRouter);
 
 contactsAPIRouter.get("/", async (req, res) => {
-  let query = knexInstance.select("*").from("contacts");
-
+  let query = knexInstance("contacts");
   if ("sort" in req.query) {
     const orderBy = req.query.sort.toString();
     if (orderBy.length > 0) {
