@@ -45,7 +45,7 @@ contactsAPIRouter.get("/", async (req, res) => {
     ) {
       query = query.orderBy(field, order);
     } else {
-      return res.status(400).json({ error: "Invalid sort parameters" });
+      return res.status(404).json({ error: "Invalid sort parameters" });
     }
   }
 
