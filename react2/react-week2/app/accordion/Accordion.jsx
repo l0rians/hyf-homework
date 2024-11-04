@@ -5,8 +5,8 @@ import { useState } from "react";
 import clsx from "clsx";
 
 function Panel({ title, children, activeIndex }) {
-  const { activeIndex: contextIndex, onOpen } = useAccordionContext();
-  const toggle = () => onOpen(activeIndex);
+  const { activeIndex: contextIndex, onChange } = useAccordionContext();
+  const toggle = () => onChange(activeIndex);
   const isOpen = contextIndex === activeIndex;
 
   return (
@@ -36,12 +36,6 @@ function Panel({ title, children, activeIndex }) {
 }
 
 export default function Accordion() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const onOpen = (index) => {
-    setActiveIndex(index);
-  };
-
   return (
     <AccordionProvider>
       <div className={"flex flex-col border border-black rounded"}>
